@@ -1,0 +1,45 @@
+@import '~src/styles/variables';
+.container {
+  width: 100%;
+  margin: auto;
+  padding: 30px;
+  box-sizing: border-box;
+
+  .form-field {
+    width: 100%;
+    max-width: 400px;
+    min-width: 200px;
+    margin: auto;
+    font-size: 0.8rem;
+    display: block;
+  }
+
+  .notes {
+    width: 100%;
+    display: grid;
+    gap: 10px;
+    margin: 0 auto;
+    justify-content: center;
+    grid-template-columns: repeat(1, 300px);
+    @media only screen and (min-width: 670px) {
+      grid-template-columns: repeat(2, 300px);
+    }
+    @media only screen and (min-width: 980px) {
+      grid-template-columns: repeat(3, 300px);
+    }
+    @media only screen and (min-width: 1290px) {
+      grid-template-columns: repeat(4, 300px);
+    }
+  }
+}
+
+.new-note-btn {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+
+  @media only screen and (min-width: 600px) {
+    top: 56px;
+    right: 56px;
+  }
+}

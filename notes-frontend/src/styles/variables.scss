@@ -1,0 +1,26 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$app-primary: mat-palette($mat-light-blue, 400, 100, 600);
+$app-accent: mat-palette($mat-deep-orange);
+$app-warn: mat-palette($mat-red);
+
+$custom-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+@include angular-material-theme($custom-theme);
+
+$primary-default: map-get($app-primary, default);
+$primary-lighter: map-get($app-primary, lighter);
+$primary-darker: map-get($app-primary, darker);
+$accent: map-get($app-accent, default);
+$warn: map-get($app-warn, default);
+$background: #f0f0f0;
+
+/* (50: #e1f5fe, 100: #b3e5fc, 200: #81d4fa, 300: #4fc3f7, 400: #29b6f6, 500: #03a9f4, 600: #039be5, 700: #0288d1, 800: #0277bd, 900: #01579b,
+A100: #80d8ff, A200: #40c4ff, A400: #00b0ff, A700: #0091ea, contrast: (50: rgba(0, 0, 0, 0.87), 100: rgba(0, 0, 0, 0.87), 200: rgba(0, 0, 0, 0.87),
+300: rgba(0, 0, 0, 0.87), 400: rgba(0, 0, 0, 0.87), 500: white, 600: white, 700: white, 800: white, 900: white, A100: rgba(0, 0, 0, 0.87), A200: rgba(0, 0, 0, 0.87),
+A400: rgba(0, 0, 0, 0.87), A700: white), default: #03a9f4, lighter: #b3e5fc, darker: #0288d1, text: #03a9f4, default-contrast: white, lighter-contrast: rgba(0, 0, 0, 0.87),
+darker-contrast: white, "50-contrast": rgba(0, 0, 0, 0.87), "100-contrast": rgba(0, 0, 0, 0.87), "200-contrast": rgba(0, 0, 0, 0.87), "300-contrast": rgba(0, 0, 0, 0.87),
+"400-contrast": rgba(0, 0, 0, 0.87), "500-contrast": white, "600-contrast": white, "700-contrast": white, "800-contrast": white, "900-contrast": white,
+"A100-contrast": rgba(0, 0, 0, 0.87), "A200-contrast": rgba(0, 0, 0, 0.87), "A400-contrast": rgba(0, 0, 0, 0.87), "A700-contrast": white,
+"contrast-contrast": null) isn't a valid CSS value. */
