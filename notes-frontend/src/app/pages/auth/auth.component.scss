@@ -1,0 +1,57 @@
+@import '~src/styles/variables';
+@import '~@angular/material/theming';
+
+.card {
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%);
+  @include mat-elevation(4);
+
+  .content {
+    width: 100%;
+    box-sizing: border-box;
+
+    .form {
+      padding: 40px;
+    }
+
+    &#sign-in {
+      display: block;
+    }
+
+    &#sign-up {
+      display: none;
+    }
+
+    .toolbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+
+      h1 {
+        padding: 10px;
+        width: 50%;
+      }
+
+      .sign-up {
+        background: $primary-darker;
+      }
+    }
+
+    .form-field {
+      display: block;
+      width: 100%;
+    }
+
+    .button {
+      display: block;
+      margin: 30px 0 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

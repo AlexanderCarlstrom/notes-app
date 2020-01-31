@@ -8,45 +8,78 @@
   </div>
 
   <div class="notes">
-    <mat-card class="card">
+    <mat-card class="card" *ngFor="let note of notes">
+      <mat-card-title>{{ note.title }}</mat-card-title>
+      <mat-card-content>{{ note.content }}</mat-card-content>
+      <button
+        mat-icon-button
+        class="remove"
+        matTooltip="Delete Note"
+        matTooltipShowDelay="300"
+        matTooltipPosition="above"
+      >
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
+    </mat-card>
+    <!-- <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
     </mat-card>
     <mat-card class="card">
       <mat-card-title>Lorem ipsum</mat-card-title>
       <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
-    </mat-card>
-    <mat-card class="card">
-      <mat-card-title>Lorem ipsum</mat-card-title>
-      <mat-card-content>Lorem ipsum - this is the content</mat-card-content>
-    </mat-card>
+      <button mat-icon-button class="remove">
+        <mat-icon color="accent">clear</mat-icon>
+      </button>
+    </mat-card> -->
   </div>
 </div>
 
-<button mat-fab class="new-note-btn" color="primary">
+<button mat-fab class="fab-btn" color="primary">
   <mat-icon>add</mat-icon>
 </button>
