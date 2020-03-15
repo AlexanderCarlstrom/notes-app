@@ -1,0 +1,71 @@
+@import 'src/variables.scss';
+
+.jumbotron {
+  width: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: $primary;
+
+  .title {
+    font-family: 'Oswald';
+    font-style: bold;
+    font-size: 30px;
+    color: #fff;
+  }
+
+  .text {
+    margin: 24px 0 24px 24px;
+    font-family: 'Open Sans';
+    font-size: 20px;
+    color: #fff;
+  }
+
+  .note {
+    display: none;
+  }
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    button {
+      background-color: transparent;
+      color: #fff;
+      border: 1px solid #fff;
+      transition: 0.2s;
+      cursor: pointer;
+      padding: 6px 25px;
+      margin: 20px 10px;
+      font-family: 'Oswald';
+      font-size: 16px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #fff;
+        color: $primary;
+        border-color: $primary;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .jumbotron {
+    height: 510px;
+    .text {
+      width: 50%;
+    }
+    .note {
+      display: block;
+      width: 300px;
+      position: absolute;
+      top: 120px;
+      right: 40px;
+    }
+    .buttons {
+      width: 50%;
+      justify-content: flex-start;
+    }
+  }
+}
