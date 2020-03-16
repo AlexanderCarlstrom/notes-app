@@ -27,7 +27,7 @@
 
     .form-field {
       width: 100%;
-      margin: 0;
+      margin: 20px 0;
       padding: 0;
       position: relative;
 
@@ -39,6 +39,7 @@
         line-height: 30px;
         vertical-align: middle;
         color: rgba(#797979, 0.7);
+        cursor: text;
       }
 
       input {
@@ -54,21 +55,28 @@
 
         &:hover {
           border-bottom: 2px solid #797979;
+        }
+        &:hover + label {
+          color: #797979;
+        }
+
+        &.ng-invalid.ng-touched,
+        &.ng-invalid.ng-dirty {
+          border-bottom: 2px solid #d8000c;
 
           & + .label {
-            color: #797979;
+            color: #d8000c;
           }
         }
-      }
 
-      input:hover,
-      .label:hover {
-        input {
-          border-bottom: 2px solid #797979;
-        }
-
-        .label {
-          color: #797979;
+        &:focus,
+        &.ng-touched,
+        &.ng-dirty {
+          & + label {
+            transition: 0.2s;
+            font-size: 12px;
+            top: -20px;
+          }
         }
       }
     }

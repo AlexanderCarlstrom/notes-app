@@ -3,9 +3,15 @@
     <span class="title">Sign In</span>
   </div>
   <div class="content">
-    <div class="form-field">
-      <p class="label" (click)="focusInput('email')">Email</p>
-      <input type="text" id="email" />
-    </div>
+    <form [formGroup]="userForm">
+      <div class="form-field">
+        <input type="text" id="email" formControlName="email" />
+        <label class="label" (click)="focusInput('email')">Email</label>
+      </div>
+      <div class="form-field">
+        <input type="password" id="password" formControlName="password" />
+        <label class="label" (click)="focusInput('password')">Password</label>
+      </div>
+    </form>
   </div>
 </div>
