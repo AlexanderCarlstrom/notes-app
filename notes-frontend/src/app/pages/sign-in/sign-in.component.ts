@@ -22,4 +22,10 @@ export class SignInComponent implements OnInit {
   focusInput(id) {
     document.getElementById(id).focus();
   }
+
+  get form() {
+    return this.userForm.controls;
+  }
+
+  onSubmit() {}
 }

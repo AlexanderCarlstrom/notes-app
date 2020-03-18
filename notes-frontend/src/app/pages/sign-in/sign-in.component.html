@@ -3,14 +3,80 @@
     <span class="title">Sign In</span>
   </div>
   <div class="content">
-    <form [formGroup]="userForm">
+    <form [formGroup]="userForm" onsubmit="onSubmit()">
+      <!-- Email -->
       <div class="form-field">
-        <input type="text" id="email" formControlName="email" />
+        <!-- Input and label -->
+        <input type="text" id="email" formControlName="email" class="input" />
         <label class="label" (click)="focusInput('email')">Email</label>
+        <!-- Error messages -->
+        <div
+          class="error"
+          *ngIf="form.email.invalid && (form.email.dirty || form.email.touched)"
+        >
+          <div class="message" *ngIf="form.email.errors.required">
+            Email is Required
+          </div>
+          <div
+            class="message"
+            *ngIf="!form.email.errors.required && form.email.errors.email"
+          >
+            Invalid Email
+          </div>
+        </div>
       </div>
+      <!-- Password -->
       <div class="form-field">
-        <input type="password" id="password" formControlName="password" />
+        <!-- Input and laabel -->
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="input"
+        />
         <label class="label" (click)="focusInput('password')">Password</label>
+        <!-- Error messages -->
+        <div
+          class="error"
+          *ngIf="
+            form.password.invalid &&
+            (form.password.dirty || form.password.touched)
+          "
+        >
+          <div class="message" *ngIf="form.password.errors.required">
+            Password is required
+          </div>
+          <div
+            class="message"
+            *ngIf="
+              !form.password.errors.required && form.password.errors.minLength
+            "
+          >
+            Password Must Have Atleast 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <!-- Remember Me Checkbox -->
+        <div class="remember">
+          <input type="checkbox" class="checkbox" id="remember" />
+          <label for="remember">Remember Me</label>
+        </div>
+        <!-- Forgot Password -->
+        <a href="">Forgot Password?</a>
+      </div>
+      <div class="row">
+        <!-- Sumbit Button -->
+        <input
+          type="submit"
+          value="SUBMIT"
+          class="button"
+          [disabled]="userForm.invalid"
+        />
+        <!-- Sign Up Link -->
+        <p class="sign-up">
+          Don't have an account? <br /><a href="">Sign Up</a>
+        </p>
       </div>
     </form>
   </div>
