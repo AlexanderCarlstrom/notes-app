@@ -1,16 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-const notesSchema = new Schema({
-  title: {
-    type: String
-  },
-  content: {
-    type: String
-  }
-});
-
-notesSchema.set('timestamps', true);
+const Note = require('./Note').Note;
 
 const userSchema = new Schema({
   name: {
@@ -26,7 +16,8 @@ const userSchema = new Schema({
     required: true
   },
   notes: {
-    type: [notesSchema],
+    type: [Note],
+    required: true,
     default: []
   }
 });
