@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn: boolean;
-  public get LoggedIn() {
-    return this.loggedIn;
+  private baseUrl = 'localhost:3000/api/user';
+
+  private user;
+  public get User() {
+    return this.user;
   }
 
   private avatar: string;
@@ -14,8 +17,12 @@ export class AuthService {
     return this.avatar;
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loggedIn = false;
     this.avatar = 'AC';
+  }
+
+  public signin(email, password) {
+    return this.http.post(this.baseUrl + '');
   }
 }

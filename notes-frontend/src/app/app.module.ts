@@ -10,8 +10,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { JumbotronComponent } from './pages/jumbotron/jumbotron.component';
 import { ListComponent } from './pages/list/list.component';
 import { NoteComponent } from './pages/note/note.component';
-import { SignInComponent } from './pages/sign-in/sign-in.component';
-import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     JumbotronComponent,
     ListComponent,
     NoteComponent,
-    SignInComponent,
-    SignUpComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
