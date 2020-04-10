@@ -3,13 +3,18 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 router.post('/register', (req, res) => {
   register(req, res);
 });
 
 router.post('/login', (req, res) => {
-  login(req, res);
+  loginWithCredentials(req, res);
+});
+
+router.get('/token', authenticate, (req, res) => {
+  loginWithToken(req, res);
 });
 
 router.post('/forgot-password', (req, res) => {
@@ -23,7 +28,7 @@ function register(req, res) {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
-  User.findOne({ email: email }).then(user => {
+  User.findOne({ email: email }).then((user) => {
     if (user) {
       return res.status(400).send('Email already exists');
     } else {
@@ -32,49 +37,73 @@ function register(req, res) {
         const user = new User({
           name: name,
           email: email,
-          password: hash
+          password: hash,
         });
         user.password = hash;
         user
           .save()
-          .then(user => res.json(user))
-          .catch(err => console.log(err));
+          .then((user) => res.json(user))
+          .catch((err) => console.log(err));
       });
     }
   });
 }
 
-async function login(req, res) {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  User.findOne({ email: email }).then(user => {
-    if (!user) {
-      return res.status(400).send('invalid email');
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return res.status(400).send('invalid password');
-    }
-    // email and password correct
-    const split = user.name.split(' ');
-    let avatar = split[0];
-    if (split.length > 1) {
-      avatar = split[0][0] + split[1][0];
-    } else {
-      avatar = split[0][0];
-    }
-    const newUser = {
-      id: user.id,
-      email: user.email,
-      avatar: avatar,
-      notes: user.notes,
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 10
-    };
-
-    jwt.sign({ user: newUser }, process.env.SECRET, (err, token) => {
-      if (err) return res.send(err);
-      return res.send(token);
+async function loginWithCredentials(req, res) {
+  return User.findByCredentials(req.body.email, req.body.password)
+    .then((user) => {
+      return user
+        .createSession()
+        .then((refreshToken) => {
+          return user.generateAccessToken().then((accessToken) => {
+            return { refreshToken, accessToken };
+          });
+        })
+        .then((tokens) => {
+          return res.send({
+            success: true,
+            user: user,
+            refreshToken: tokens.refreshToken,
+            accessToken: tokens.accessToken,
+          });
+        });
+    })
+    .catch((err) => {
+      res.send({
+        success: false,
+        error: err,
+      });
     });
+}
+
+function loginWithToken(req, res) {
+  return User.findByIdAndToken(req.user._id, req.headers['refresh-token'])
+    .then((user) => {
+      return user.generateAccessToken().then((accessToken) => {
+        return res.send({
+          success: true,
+          user: user,
+          accessToken: accessToken,
+        });
+      });
+    })
+    .catch((err) => {
+      res.send({
+        success: false,
+        error: err,
+      });
+    });
+}
+
+function authenticate(req, res, next) {
+  const token = req.headers['access-token'];
+  jwt.verify(token, process.env.SECRET, (err, decoded) => {
+    if (err) {
+      console.log(err);
+      return res.sendStatus(403);
+    }
+    req.user = decoded;
+    next();
   });
 }
 
