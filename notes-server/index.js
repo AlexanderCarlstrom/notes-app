@@ -11,7 +11,7 @@ dotenv.config();
 mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
-  err => {
+  (err) => {
     if (err) {
       console.log(err);
     } else {
@@ -20,8 +20,20 @@ mongoose.connect(
   }
 );
 
+// middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, access-token, refresh-token'
+  );
+  next();
+});
+
+// routes
 app.use('/api/user', userRoutes);
 app.use('/api/note', noteRoutes);
 

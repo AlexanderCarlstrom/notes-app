@@ -17,15 +17,15 @@ const routes: Routes = [
     children: [
       { path: '', component: JumbotronComponent },
       { path: 'list', component: ListComponent },
-      { path: 'note', component: NoteComponent }
-    ]
+      { path: 'note', component: NoteComponent },
+    ],
   },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

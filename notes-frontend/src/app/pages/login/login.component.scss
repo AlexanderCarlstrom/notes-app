@@ -25,6 +25,17 @@
   .content {
     padding: 24px;
 
+    .form-error {
+      color: #d8000c;
+      border: 1px solid #d8000c;
+      width: 100%;
+      text-align: center;
+      padding: 5px 0;
+      font-family: 'Open Sans';
+      font-size: 12px;
+      display: none;
+    }
+
     .form-field {
       width: 100%;
       margin: 20px 0;

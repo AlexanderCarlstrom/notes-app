@@ -1,8 +1,9 @@
 <div class="card">
   <div class="header">
-    <span class="title">Sign In</span>
+    <span class="title">Login</span>
   </div>
   <div class="content">
+    <div class="form-error" id="form-error">Error Message</div>
     <form [formGroup]="userForm" onsubmit="onSubmit()">
       <!-- Email -->
       <div class="form-field">

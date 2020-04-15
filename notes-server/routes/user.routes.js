@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const _ = require('lodash');
 require('dotenv').config();
 
 router.post('/register', (req, res) => {
@@ -15,6 +16,10 @@ router.post('/login', (req, res) => {
 
 router.get('/token', authenticate, (req, res) => {
   loginWithToken(req, res);
+});
+
+router.get('/logout', authenticate, (req, res) => {
+  logout(req, res);
 });
 
 router.post('/forgot-password', (req, res) => {
@@ -93,6 +98,32 @@ function loginWithToken(req, res) {
         error: err,
       });
     });
+}
+
+function logout(req, res) {
+  User.findOne({ _id: req.user._id }, (err, user) => {
+    if (err) {
+      console.log(err);
+      return res.sendStatus(403);
+    }
+
+    if (!user) {
+      return res.sendStatus(401);
+    }
+
+    _.remove(user.sessions, (n) => {
+      return (n.token = req.headers['refresh-token']);
+    });
+
+    user.save((err) => {
+      if (err) {
+        console.log(err);
+        return res.send('Could not save');
+      }
+
+      return res.send('done');
+    });
+  });
 }
 
 function authenticate(req, res, next) {

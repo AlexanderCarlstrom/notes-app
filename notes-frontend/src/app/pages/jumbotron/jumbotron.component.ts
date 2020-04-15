@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 @Component({
   selector: 'app-jumbotron',
   templateUrl: './jumbotron.component.html',
-  styleUrls: ['./jumbotron.component.scss']
+  styleUrls: ['./jumbotron.component.scss'],
 })
 export class JumbotronComponent implements OnInit {
   constructor(private auth: AuthService) {}
@@ -12,6 +12,6 @@ export class JumbotronComponent implements OnInit {
   ngOnInit(): void {}
 
   isLoggedIn() {
-    return this.auth.LoggedIn;
+    return false;
   }
 }
